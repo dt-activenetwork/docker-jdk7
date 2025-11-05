@@ -9,11 +9,11 @@ This branch provides a Debian 12 based Docker image containing the 64-bit Oracle
 - **Registry:** `ghcr.io/<OWNER>/<REPO>/debian12-oracle-jdk6`
 - **Platforms:** `linux/amd64`
 
-> **Note:** Oracle JDK 6 binaries require acceptance of Oracle's license terms. Obtain `jdk-6u45-linux-x64.bin` directly from Oracle, accept the license, and place the file alongside the Dockerfile before running any builds.
+> **Note:** Oracle JDK 6 binaries require acceptance of Oracle's license terms. Obtain `jdk-6u45-linux-x64.bin` directly from Oracle, accept the license, and place the file alongside the Dockerfile before running any builds. The file is tracked via Git Large File Storage (LFS); make sure you have run `git lfs install` (once per machine) and `git lfs pull` so the real binary is present before building.
 
 ## Building locally
 
-To build the image locally (after copying `jdk-6u45-linux-x64.bin` into the repository root):
+To build the image locally (after copying `jdk-6u45-linux-x64.bin` into the repository root or fetching it with Git LFS):
 
 ```bash
 docker build -t debian12-oracle-jdk6 .

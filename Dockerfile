@@ -21,6 +21,11 @@ COPY jdk-6u45-linux-x64.bin /tmp/jdk-6u45-linux-x64.bin
 RUN set -eux; \
     mkdir -p /opt/java; \
     chmod +x /tmp/jdk-6u45-linux-x64.bin; \
+    if grep -q "https://git-lfs.github.com/spec/v1" /tmp/jdk-6u45-linux-x64.bin; then \
+        echo "ERROR: The Oracle JDK installer is still a Git LFS pointer." >&2; \
+        echo "Ensure 'git lfs fetch --all' (or 'git lfs pull') has been run before building." >&2; \
+        exit 1; \
+    fi; \
     cd /opt/java; \
     printf 'yes\n' | /tmp/jdk-6u45-linux-x64.bin > /dev/null; \
     rm /tmp/jdk-6u45-linux-x64.bin; \
