@@ -23,8 +23,11 @@ jobs:
             expected_version: "1.7.0_80"
     steps:
       - name: Log in to GitHub Container Registry
-        run: |
-          echo "${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull image
         env:
