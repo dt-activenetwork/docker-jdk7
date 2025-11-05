@@ -11,9 +11,16 @@ This repository builds a Debian 12 based Docker image containing the 64-bit Orac
 
 > **Note:** Downloading Oracle JDK 7 requires acceptance of Oracle's license terms. Because the Oracle download servers often require interactive authentication, the build expects a pre-downloaded archive named `jdk-7u80-linux-x64.tar.gz` to exist at the repository root. Ensure that you are permitted to download and use the Oracle JDK in your jurisdiction.
 
+The tarball is stored in the repository via [Git LFS](https://git-lfs.com/). When cloning the repository (locally or in CI), make sure LFS objects are fetched so that the real archive is present instead of the small text pointer that Git stores by default:
+
+```bash
+git lfs install
+git lfs pull
+```
+
 ## Building locally
 
-To build the image locally, first place the Oracle JDK 7u80 tarball (`jdk-7u80-linux-x64.tar.gz`) in the repository root, then run:
+To build the image locally, first place the Oracle JDK 7u80 tarball (`jdk-7u80-linux-x64.tar.gz`) in the repository root (or fetch it via Git LFS as shown above), then run:
 
 ```bash
 docker build --build-arg JDK_VERSION=7u80 \
