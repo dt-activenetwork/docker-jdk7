@@ -34,8 +34,8 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}/debian12-oracle-jdk7
           tags: |
-            type=ref,event=branch,prefix=
-            type=sha
+            type=raw,value=latest
+            type=ref,event=branch
 
       - name: Build and push image
         uses: docker/build-push-action@v5
